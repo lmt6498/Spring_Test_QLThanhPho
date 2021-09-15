@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+<div th:replace="/layout :: header"></div>
+<div class="container">
+
+
+  <h1>Thành phố <span th:text="${city.name}"></span> </h1>
+  <table>
+    <tr>
+      <td th:text="'ID: ' + ${city.id}" hidden></td>
+    </tr>
+    <tr>
+      <td th:text="'Tên: ' + ${city.name}"></td>
+    </tr>
+    <tr>
+      <td th:text="'Quốc gia: ' +${city.country.name}"></td>
+    </tr>
+    <tr>
+      <td>Hình ảnh: <img th:src="${city.img}" width="150" height="150"></td>
+    </tr>
+    <tr>
+      <td th:text="'Diện tích: ' +${city.area}"></td>
+    </tr>
+    <tr>
+      <td th:text="'Dân số: ' +${city.population}"></td>
+    </tr>
+    <tr>
+      <td th:text="'GDP: ' +${city.GDP}"></td>
+    </tr>
+    <tr>
+      <td>Giới thiệu:</td>
+    </tr>
+    <tr>
+      <td th:text="${city.description}"></td>
+    </tr>
+    <tr>
+      <td><a th:href="@{/edit/{id}(id=${city.id})}" class="btn btn-warning">Chỉnh sửa thành phố</a></td>
+      <td><a onclick=" return confirm('Bạn có muốn xóa???')" th:href="@{/delete/{id}(id=${city.id})}" class="btn btn-danger">Xoá</a></td>
+    </tr>
+  </table>
+  <a href="/home">Back to List</a>
+</div>
+
+<div th:replace="/layout :: footer"></div>
+</body>
+</html>

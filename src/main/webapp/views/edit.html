@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+<div th:replace="/layout :: header"></div>
+<div class="container">
+  <h2>Edit</h2>
+  <form method="post" th:object="${city}" enctype="multipart/form-data">
+    <input type="text" th:field="*{id}" hidden>
+    <table class="table">
+      <tbody>
+      <tr>
+        <th>Tên: </th>
+        <td><input type="text" th:field="*{name}"></td>
+      </tr>
+      <tr>
+        <th>Quốc gia</th>
+        <td><select th:field="*{country}">
+          <option th:each="cl:${country}" th:value="${cl.id}" th:text="${cl.name}"></option>
+        </select></td>
+      </tr>
+      <tr>
+        <td>Hình ảnh:<img th:src="*{img}" width="150" height="150"></td>
+        <td>Thay đổi hình ảnh: <input type="file" name="uppImg"></td>
+      </tr>
+      <tr>
+        <th>Diện tích: </th>
+        <td><input type="text" th:field="*{area}"></td>
+      </tr>
+      <tr>
+        <th>Dân số: </th>
+        <td><input type="text" th:field="*{population}"></td>
+      </tr>
+      <tr>
+        <th>GDP: </th>
+        <td><input type="text" th:field="*{GDP}"></td>
+      </tr>
+      <tr>
+        <th>Giới thiệu: </th>
+        <td><textarea th:field="*{description}"></textarea></td>
+      </tr>
+
+      </tbody>
+    </table>
+    <button type="submit" class="btn btn-success">Chỉnh sửa</button>
+    <a href="/home" class="btn btn-primary">Thoát</a>
+
+  </form>
+</div>
+<div th:replace="/layout :: footer"></div>
+</body>
+</html>

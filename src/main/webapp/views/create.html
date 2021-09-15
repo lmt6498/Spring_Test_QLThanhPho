@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+<div th:replace="/layout :: header"></div>
+<div class="container">
+  <h2>Create</h2>
+  <form action="/create" method="post" th:object="${city}" enctype="multipart/form-data">
+    <table class="table">
+      <tbody>
+      <tr>
+        <th>Tên: </th>
+        <td><input type="text" th:field="*{name}">
+          <span style="color: red" th:if="${#fields.hasErrors('name')}"
+                th:errors="*{name}"></span></td>
+      </tr>
+      </tr>
+      <th>Quốc gia: </th>
+      <td><select th:field="*{country}">
+        <option th:each="ct:${country}" th:value="${ct.id}" th:text="${ct.name}"></option>
+      </select></td>
+      </tr>
+      <tr>
+        <th>Hình ảnh: </th>
+        <td><input type="file" name="uppImg"></td>
+          <span style="color: red" th:if="${#fields.hasErrors('name')}"
+                th:errors="*{img}"></span></td>
+      </tr>
+      <tr>
+        <th>Diện tích: </th>
+        <td><input type="text" th:field="*{area}">
+          <span style="color: red" th:if="${#fields.hasErrors('area')}"
+                th:errors="*{area}"></span></td>
+      </tr>
+      <tr>
+        <th>Dân số: </th>
+        <td><input type="text" th:field="*{population}">
+          <span th:if="${#fields.hasErrors('population')}"
+                th:errors="*{population}" style="color: red"></span></td>
+      </tr>
+      <tr>
+        <th>GDP: </th>
+        <td><input type="text" th:field="*{GDP}">
+          <span style="color: red" th:if="${#fields.hasErrors('GDP')}"
+                th:errors="*{GDP}"></span></td>
+      </tr>
+      <tr>
+        <th>Giới thiệu: </th>
+        <td>
+        <textarea th:field="*{description}"></textarea>
+        </td>
+      </tr>
+
+
+      </tbody>
+    </table>
+    <button type="submit" class="btn btn-success">Nhập thành phố</button>
+    <a href="/home" class="btn btn-primary">Thoát</a>
+  </form>
+</div>
+<div th:replace="/layout :: footer"></div>
+</body>
+</html>
